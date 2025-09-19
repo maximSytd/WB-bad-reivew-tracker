@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+#MacOS cache files
+.DS_Store
+
+#Pytest cache directory
+.pytest_cache/
+
+#VS code local config
+.vscode
