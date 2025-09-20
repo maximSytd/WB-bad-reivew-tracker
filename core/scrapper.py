@@ -14,11 +14,9 @@ class WBFeedbacksScrapper:
 
     URLS = {
         "detail_v2": "https://card.wb.ru/cards/v2/detail",
-        "feedbacks_v2": (
-            "https://feedbacks{data_center}.wb.ru/feedbacks/v2/{root}"
-        ),
+        "feedbacks_v2": "https://feedbacks{server}.wb.ru/feedbacks/v2/{root}",
     }
-    _WB_DATA_CENTERS_AMOUNT = 2
+    _WB_DATA_SERVERS_AMOUNT = 2
     _DEFAULT_DEST_CSV = "-1257786,-59204,-58159,-115136"
 
     def __init__(
@@ -83,10 +81,10 @@ class WBFeedbacksScrapper:
     ) -> list[schemas.Feedback] | None:
         """Return list of Feedback schemas."""
         founded = []
-        for data_center_id in range(1, self._WB_DATA_CENTERS_AMOUNT + 1):
+        for server in range(1, self._WB_DATA_SERVERS_AMOUNT + 1):
             data = self._request(
                 url=self.URLS["feedbacks_v2"].format(
-                    data_center=data_center_id,
+                    server=server,
                     root=root,
                 ),
             )
