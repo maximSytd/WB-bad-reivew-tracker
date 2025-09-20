@@ -21,6 +21,11 @@ Util for WB scrapping and filtering feedbacks of product
     ```
 
 3. Apply migration to db
-    ```shell
+    ```bash
     aerich upgrade
+    ```
+
+4. Usage
+    ```bash
+    python feedback_tracker.py --article=210127476 --valuation=3 --day-limit=12
     ```
