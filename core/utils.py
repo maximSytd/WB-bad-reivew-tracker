@@ -39,3 +39,18 @@ async def tortoise_context_manager(
         yield
     finally:
         await tortoise.Tortoise.close_connections()
+
+def common_headers() -> dict[str, str | tuple[str, ...]]:
+    """Return common headers for http client."""
+    return {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "ru-ru,ru;q=0.9,en;q=0.8",
+        "Referer": "https://www.wildberries.ru/",
+        "Origin": "https://www.wildberries.ru",
+        "User-Agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/126.0.0.0 Safari/537.36"
+        ),
+        "Connection": "keep-alive",
+    }
