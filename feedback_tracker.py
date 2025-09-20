@@ -23,15 +23,22 @@ from core.processing import create_new_feedbacks
     help="The number of recent days for which feedback was published.",
 )
 @click.option(
+    "--save",
+    required=False,
+    default=True,
+    help="Save filtered feedbacks in db.",
+)
+@click.option(
     "--product-root",
     required=False,
-    help="Product root, which allows you to get feedbacks faster",
+    help="Product root, which allows you to get feedbacks faster.",
 )
 async def feedback_tracker(
     article: int,
     valuation: int,
     day_limit: int,
-    product_root: int | None = None,
+    save: bool,
+    product_root: int | None,
 ) -> None:
     with client_manager(headers=common_headers()) as client:
         scrapper = WBFeedbacksScrapper(
@@ -47,11 +54,12 @@ async def feedback_tracker(
             click.echo("Feedbacks are not found!")
             return
         click.echo(f"find {len(feedbacks)} feedbacks")
-        async with tortoise_context_manager():
-            await create_new_feedbacks(
-                product_article=article,
-                feedbacks=feedbacks,
-            )
+        if save:
+            async with tortoise_context_manager():
+                await create_new_feedbacks(
+                    product_article=article,
+                    feedbacks=feedbacks,
+                )
 
 
 if __name__ == "__main__":
