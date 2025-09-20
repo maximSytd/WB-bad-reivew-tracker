@@ -13,6 +13,7 @@ class Feedback(models.Model, TimeStampMixin):
 
     ID_MAX_LEN = 20
     USERNAME_MAX_LEN = 50
+    PRODUCT_ARTICLE_MAX_DIGITS = 20
     VALUATION_MIN_VAL = 1
     VALUATION_MAX_VAL = 5
     COMMENT_MAX_LEN = 5000
