@@ -1,4 +1,4 @@
-from tortoise import models, fields
+from tortoise import fields
 
 
 class TimeStampMixin:
@@ -10,13 +10,3 @@ class TimeStampMixin:
     modified = fields.DatetimeField(
         auto_now=True,
     )
-
-class BaseModel(TimeStampMixin, models.Model):
-    """Base db model with integer id and timestamp mixin."""
-
-    id = fields.IntField(
-        primary_key=True,
-    )
-
-    class Meta:
-        abstract = True
