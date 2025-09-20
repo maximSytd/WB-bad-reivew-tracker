@@ -1,7 +1,7 @@
 import asyncclick as click
 
 from core.scrapper import WBFeedbacksScrapper
-from core.utils import client_manager, tortoise_context_manager
+from core.utils import client_manager, tortoise_context_manager, common_headers
 from core.processing import create_new_feedbacks
 
 @click.command()
@@ -33,7 +33,7 @@ async def feedback_tracker(
     day_limit: int,
     product_root: int | None = None,
 ) -> None:
-    with client_manager() as client:
+    with client_manager(headers=common_headers()) as client:
         scrapper = WBFeedbacksScrapper(
             article=article,
             client=client,
