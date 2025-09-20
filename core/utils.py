@@ -41,7 +41,7 @@ async def tortoise_context_manager(
         await tortoise.Tortoise.close_connections()
 
 def common_headers() -> dict[str, str | tuple[str, ...]]:
-    """Return common headers for http client."""
+    """Return common headers for http client to work with wb api."""
     return {
         "Accept": "application/json, text/plain, */*",
         "Accept-Language": "ru-ru,ru;q=0.9,en;q=0.8",
