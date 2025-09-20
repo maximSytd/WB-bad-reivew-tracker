@@ -14,13 +14,13 @@ from core.processing import create_new_feedbacks
     "--valuation",
     required=False,
     default=3,
-    help="User product valuation from feedback.",
+    help="Product valuation from feedbacks.",
 )
 @click.option(
     "--day-limit",
     required=False,
     default=3,
-    help="The number of recent days for which feedback was published.",
+    help="The number of recent days from feedbacks was published.",
 )
 @click.option(
     "--save",
@@ -33,6 +33,7 @@ from core.processing import create_new_feedbacks
     required=False,
     help="Product root, which allows you to get feedbacks faster.",
 )
+# TODO: add --show thats print result with tabulate (psql format)
 async def feedback_tracker(
     article: int,
     valuation: int,
