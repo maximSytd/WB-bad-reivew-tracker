@@ -82,6 +82,7 @@ class WBFeedbacksScrapper:
         root: int,
     ) -> list[schemas.Feedback] | None:
         """Return list of Feedback schemas."""
+        founded = []
         for data_center_id in range(1, self._WB_DATA_CENTERS_AMOUNT + 1):
             data = self._request(
                 url=self.URLS["feedbacks_v2"].format(
@@ -89,8 +90,9 @@ class WBFeedbacksScrapper:
                     root=root,
                 ),
             )
-            if data["feedbacks"]:
-                return self._normalize_feedbacks(data)
+            founded.append(data["feedbacks"])
+        if founded:
+            return self._normalize_feedbacks(data)
         return None
 
     def _feedbacks_from_article(self) -> list[schemas.Feedback] | None:
