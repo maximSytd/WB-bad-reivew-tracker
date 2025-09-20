@@ -1,6 +1,6 @@
 [project]
 name = "wb-bad-review-tracker"
-version = "0.1.0"
+version = "1.0.0"
 description = "Wb feedbacks scrapper as test task"
 readme = "README.md"
 requires-python = ">=3.13"
