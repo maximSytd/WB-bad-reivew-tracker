@@ -45,6 +45,7 @@ async def feedback_tracker(
         )
         if not feedbacks:
             click.echo("Feedbacks are not found!")
+            return
         click.echo(f"find {len(feedbacks)} feedbacks")
         async with tortoise_context_manager():
             await create_new_feedbacks(
