@@ -6,6 +6,9 @@ dist/
 wheels/
 *.egg-info
 
+# Env variables
+.env
+
 # Virtual environments
 .venv
 
@@ -17,3 +20,7 @@ wheels/
 
 #VS code local config
 .vscode
+
+
+#Sqlite
+*.sqlite*
