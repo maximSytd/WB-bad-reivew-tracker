@@ -44,7 +44,6 @@ from core.processing import create_new_feedbacks
     required=False,
     help="Product root, which allows you to get feedbacks faster.",
 )
-# TODO: add --show thats print result with tabulate (psql format)
 async def feedback_tracker(
     article: int,
     valuation: int,
@@ -54,6 +53,7 @@ async def feedback_tracker(
     product_root: int | None,
 ) -> None:
     with client_manager(headers=common_headers()) as client:
+        """Track and process Wildberries product feedbacks by filters."""
         scrapper = WBFeedbacksScrapper(
             article=article,
             client=client,
