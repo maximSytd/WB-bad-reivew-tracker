@@ -8,40 +8,56 @@ from core.utils import (
     tortoise_context_manager,
 )
 from core.processing import create_new_feedbacks
+from core.models import Feedback
+
+DAY_LIMIT_MIN = 1
+DAY_LIMIT_MAX = 90
 
 @click.command()
 @click.option(
     "--article",
     required=True,
+    type=click.INT,
     help="WB product article.",
 )
 @click.option(
     "--valuation",
     required=False,
+    type=click.IntRange(
+        Feedback.VALUATION_MIN_VAL,
+        Feedback.VALUATION_MAX_VAL,
+    ),
     default=3,
     help="Product valuation from feedbacks.",
 )
 @click.option(
     "--day-limit",
     required=False,
+    type=click.IntRange(
+        DAY_LIMIT_MIN,
+        DAY_LIMIT_MAX,
+    ),
     default=3,
     help="The number of recent days from feedbacks was published.",
 )
 @click.option(
     "--show",
     required=False,
+    type=click.BOOL,
     default=False,
     help="Tabulate and show founded feedbacks.",
 )
 @click.option(
     "--save",
     required=False,
+    type=click.BOOL,
     default=True,
     help="Save filtered feedbacks in db.",
 )
 @click.option(
     "--product-root",
     required=False,
+    type=click.INT,
     help="Product root, which allows you to get feedbacks faster.",
 )
 async def feedback_tracker(
