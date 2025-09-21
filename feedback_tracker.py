@@ -52,8 +52,8 @@ async def feedback_tracker(
     save: bool,
     product_root: int | None,
 ) -> None:
+    """Track and process Wildberries product feedbacks by filters."""
     with client_manager(headers=common_headers()) as client:
-        """Track and process Wildberries product feedbacks by filters."""
         scrapper = WBFeedbacksScrapper(
             article=article,
             client=client,
