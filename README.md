@@ -31,3 +31,9 @@ Util for WB scrapping and filtering feedbacks of product
     ```
     Example output:
     ![alt text](docs/screenshot1.png)
+
+4. Check the result in db
+    You can user Tortoise shell to checkout saved feedbacks in db
+    ```bash
+    tortoise-cli shell
+    ```
