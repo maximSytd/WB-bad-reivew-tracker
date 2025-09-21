@@ -27,5 +27,7 @@ Util for WB scrapping and filtering feedbacks of product
 
 4. Usage
     ```bash
-    python feedback_tracker.py --article=210127476 --valuation=3 --day-limit=12
+    python feedback_tracker.py --article=210127476 --valuation=3 --day-limit=5 --show=True
     ```
+    Example output:
+    ![alt text](docs/screenshot1.png)
