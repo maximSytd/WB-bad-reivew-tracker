@@ -1,7 +1,12 @@
 import asyncclick as click
 
 from core.scrapper import WBFeedbacksScrapper
-from core.utils import client_manager, tortoise_context_manager, common_headers
+from core.utils import (
+    client_manager,
+    common_headers,
+    feedbacks_to_table,
+    tortoise_context_manager,
+)
 from core.processing import create_new_feedbacks
 
 @click.command()
@@ -23,6 +28,12 @@ from core.processing import create_new_feedbacks
     help="The number of recent days from feedbacks was published.",
 )
 @click.option(
+    "--show",
+    required=False,
+    default=False,
+    help="Tabulate and show founded feedbacks.",
+)
+@click.option(
     "--save",
     required=False,
     default=True,
@@ -38,6 +49,7 @@ async def feedback_tracker(
     article: int,
     valuation: int,
     day_limit: int,
+    show: bool,
     save: bool,
     product_root: int | None,
 ) -> None:
@@ -54,7 +66,9 @@ async def feedback_tracker(
         if not feedbacks:
             click.echo("Feedbacks are not found!")
             return
-        click.echo(f"find {len(feedbacks)} feedbacks")
+        click.echo(f"found {len(feedbacks)} feedbacks")
+        if show:
+            click.echo(feedbacks_to_table(feedbacks))
         if save:
             async with tortoise_context_manager():
                 await create_new_feedbacks(
